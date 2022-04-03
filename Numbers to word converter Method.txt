@@ -1,0 +1,396 @@
+// A method convert_to_words to print a given number in words. The program handles numbers from 0 to 100
+using System;
+class Program
+{
+
+    // A function that prints given number in words
+
+    static void convert_to_words(char[] num)
+
+    {
+
+        // Get number of digits
+
+        // in given number
+
+        int len = num.Length;
+
+        // Base cases
+
+        if (len == 0)
+        {
+            Console.WriteLine("empty string, please input a value");
+            return;
+        }
+        //if ((len > 2) && (num == '100'))
+        //{
+
+        //}
+
+        if (len > 4)
+        {
+            Console.WriteLine("
+The maximum convertable value is 100");
+            return;
+        }
+
+        /* The first string is not used, it is to make array indexing simple */
+
+        string[] single_digits = new string[] 
+        {
+
+            "zero", "one", "two",   "three", "four",
+
+            "five", "six", "seven", "eight", "nine"
+
+        };
+
+        /* The first string is not used, it is to make array indexing simple */
+
+        string[] two_digits = new string[] 
+        {
+
+            "",   "ten",   "eleven",  "twelve",
+
+            "thirteen",  "fourteen", "fifteen", "sixteen",
+
+            "seventeen", "eighteen", "nineteen"
+
+        };
+
+
+        /* The first two string are not used, they are to make array indexing simple*/
+
+        string[] tens_multiple = new string[] 
+        {
+
+            "",   "",   "twenty",  "thirty", "forty",
+
+            "fifty", "sixty", "seventy", "eighty", "ninety"
+        };
+
+        string[] tens_power = new string[] 
+        { 
+            "hundred"
+        };
+
+        Console.Write((new string(num)) + ": ");
+
+        /* For single digit number */
+
+        if (len == 1)
+        {
+
+            Console.WriteLine(single_digits[num[0] - '0']);
+
+            return;
+
+        }
+
+        int x = 0;
+
+        while (x < num.Length)
+        {
+
+
+            /* Code path for first 2 digits */
+
+            if (len >= 3)
+            {
+
+                if ((num[x] - '0' != 0) && (num[x] - '0' == 1))
+                {
+                	if ((num[x+1] == '0') && (num[x+2] == '0'))
+                	{
+                		Console.Write(single_digits[1] + " ");
+                    	Console.Write(tens_power[0] + "
+");
+                	}
+                    else
+	                {
+	                    Console.WriteLine("The maximum convertable value is 100
+");
+	                    return;
+	                }
+                }
+                if (num[x] - '0' > 1)
+	            {
+	            	Console.WriteLine("The maximum convertable value is 100
+");
+	                return;
+	            }
+            }
+
+            /* Code path for last 2 digits */
+
+            else
+            {
+
+                /* Need to explicitly handle 10-19. Sum of the two digits is used as index of "two_digits" array of strings */
+
+                if (num[x] - '0' == 1)
+                {
+
+                    int sum = num[x] - '0' + num[x + 1] - '0';
+
+                    Console.WriteLine(two_digits[sum]);
+
+                    return;
+
+                }
+
+                /* Need to explicitly handle 20 */
+
+                else if (num[x] - '0' == 2
+
+                         && num[x + 1] - '0' == 0)
+                {
+
+                    Console.WriteLine("twenty");
+
+                    return;
+
+                }
+
+                /* Rest of the two digit numbers i.e., 21 to 99 */
+
+                else
+                {
+
+                    int i = (num[x] - '0');
+
+                    if (i > 0)
+
+                        Console.Write(tens_multiple[i] + " ");
+
+                    else
+
+                        Console.Write("");
+
+                    ++x;
+
+                    if (num[x] - '0' != 0)
+
+                        Console.WriteLine(
+
+                            single_digits[num[x] - '0']);
+
+                }
+
+            }
+
+            ++x;
+
+        }
+
+    }
+
+
+    // Driver Code
+
+    public static void Main()
+
+    {
+        convert_to_words("37".ToCharArray());
+
+        convert_to_words("100".ToCharArray());
+        
+        convert_to_words("101".ToCharArray());
+
+        convert_to_words("4305".ToCharArray());
+    }
+}
+/*
+// A method convert_to_words to print a given number in words. The program handles numbers from 0 to 100
+using System;
+class Program
+{
+
+    // A function that prints given number in words
+
+    static void convert_to_words(char[] num)
+
+    {
+
+        // Get number of digits
+
+        // in given number
+
+        int len = num.Length;
+
+        // Base cases
+
+        if (len == 0)
+        {
+            Console.WriteLine("empty string, please input a value");
+            return;
+        }
+        //if ((len > 2) && (num == '100'))
+        //{
+
+        //}
+
+        if (len > 3)
+        {
+            Console.WriteLine("
+The maximum convertable value is 100");
+            return;
+        }
+
+        /* The first string is not used, it is to make array indexing simple */
+
+        string[] single_digits = new string[] 
+        {
+
+            "zero", "one", "two",   "three", "four",
+
+            "five", "six", "seven", "eight", "nine"
+
+        };
+
+        /* The first string is not used, it is to make array indexing simple */
+
+        string[] two_digits = new string[] 
+        {
+
+            "",   "ten",   "eleven",  "twelve",
+
+            "thirteen",  "fourteen", "fifteen", "sixteen",
+
+            "seventeen", "eighteen", "nineteen"
+
+        };
+
+
+        /* The first two string are not used, they are to make array indexing simple*/
+
+        string[] tens_multiple = new string[] 
+        {
+
+            "",   "",   "twenty",  "thirty", "forty",
+
+            "fifty", "sixty", "seventy", "eighty", "ninety"
+        };
+
+        string[] tens_power = new string[] 
+        { 
+            "hundred"
+        };
+
+        Console.Write((new string(num)) + ": ");
+
+        /* For single digit number */
+
+        if (len == 1)
+        {
+
+            Console.WriteLine(single_digits[num[0] - '0']);
+
+            return;
+
+        }
+
+        int x = 0;
+
+        while (x < num.Length)
+        {
+
+
+            /* Code path for first 2 digits */
+
+            if (len == 3)
+            {
+
+                if ((num[x] - '0' != 0) && (num[x] - '0' == 1))
+                {
+                	if ((num[x+1] == '0') && (num[x+2] == '0'))
+                	{
+                		Console.Write(single_digits[1] + " ");
+                    	Console.Write(tens_power[0]);
+                	}
+                    else
+	                {
+	                    Console.WriteLine("The maximum convertable value is 100");
+	                    return;
+	                }
+                }
+            }
+
+            /* Code path for last 2 digits */
+
+            else
+            {
+
+                /* Need to explicitly handle 10-19. Sum of the two digits is used as index of "two_digits" array of strings */
+
+                if (num[x] - '0' == 1)
+                {
+
+                    int sum = num[x] - '0' + num[x + 1] - '0';
+
+                    Console.WriteLine(two_digits[sum]);
+
+                    return;
+
+                }
+
+                /* Need to explicitly handle 20 */
+
+                else if (num[x] - '0' == 2
+
+                         && num[x + 1] - '0' == 0)
+                {
+
+                    Console.WriteLine("twenty");
+
+                    return;
+
+                }
+
+                /* Rest of the two digit numbers i.e., 21 to 99 */
+
+                else
+                {
+
+                    int i = (num[x] - '0');
+
+                    if (i > 0)
+
+                        Console.Write(tens_multiple[i] + " ");
+
+                    else
+
+                        Console.Write("");
+
+                    ++x;
+
+                    if (num[x] - '0' != 0)
+
+                        Console.WriteLine(
+
+                            single_digits[num[x] - '0']);
+
+                }
+
+            }
+
+            ++x;
+
+        }
+
+    }
+
+
+    // Driver Code
+
+    public static void Main()
+
+    {
+        convert_to_words("37".ToCharArray());
+
+        convert_to_words("100".ToCharArray());
+
+        convert_to_words("4305".ToCharArray());
+    }
+}
+*/

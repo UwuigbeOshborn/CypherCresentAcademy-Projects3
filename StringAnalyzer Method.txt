@@ -1,0 +1,32 @@
+// A method called StringAnalyzer, which checks the length of the string input and convert the input to uppercase
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace CypherCresentClass9d
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            StringAnalyzer("My world needs you");
+        }
+        static void StringAnalyzer(string input)
+        {
+            int count;
+            string newString;
+
+            count = 0;
+            newString = "";  
+            foreach (var item in input)
+            {
+                count += 1;
+                newString = newString + Char.ToUpper(item);
+            }
+            Console.Write("The length of the string input = {0}\n", count);
+            Console.Write("The uppercase of the input is:{0}\n", newString);
+        }
+    }
+}

@@ -1,0 +1,46 @@
+// A method called Factorial that solves the factorial of any integer numbers using iterative method
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace CypherCresentClass9
+{
+    internal class Program
+    {
+        public static void Main(string[] args)
+        {
+            Factorial(1000);
+        }
+        public static void Factorial(int n)
+        {
+            double facrtorial = 1;
+            int input_n = n;
+            Console.Write("\n\n");
+            Console.Write("Calculate facrtorial of n number :\n");
+            Console.Write("----------------------------------------");
+            Console.Write("\n\n");
+
+            if ((n == 0) || (n == 1))
+            {
+                facrtorial = 1;
+
+                Console.Write("The facrtorial of {0} = {1}\n", input_n, facrtorial);
+            }
+            else if (n < 0)
+            {
+                Console.Write("Only Positive integer is accepted\n");
+            }
+            else
+            {
+                while (n > 0)
+                {
+                    facrtorial = facrtorial * n;
+                    n -= 1;
+                }
+                Console.Write("The facrtorial of {0} = {1}\n", input_n, facrtorial);
+            }
+        }
+    }
+}

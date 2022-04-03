@@ -1,0 +1,54 @@
+// A method called Quadratics that solves quadratic expressions
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace CypherCresentClass9
+{
+    internal class Program
+    {
+        public static void Main(string[] args)
+        {
+            Quadratics(2, 3, 5);
+        }
+        public static void Quadratics(double a, double b, double c)
+        {
+            double x1, x2, d, sqrt_val;
+            Console.Write("\n\n");
+            Console.Write("Calculate root of Quadratic Equation :\n");
+            Console.Write("----------------------------------------");
+            Console.Write("\n\n");
+   
+            d = b * b - 4 * a * c;
+            sqrt_val = Math.Sqrt(Math.Abs(d));
+            if (d == 0)
+            {
+                Console.Write("Both roots are equal.\n");
+                x1 = -b / (2.0 * a);
+                x2 = x1;
+                Console.Write("First  Root Root1= {0}\n", x1);
+                Console.Write("Second Root Root2= {0}\n", x2);
+            }
+            else if (d > 0)
+            {
+                Console.Write("Both roots are real and different\n");
+
+                x1 = ((-b + sqrt_val) / (2 * a));
+                x2 = ((-b - sqrt_val) / (2 * a));
+
+                Console.Write("First  Root Root1= {0}\n", x1);
+                Console.Write("Second Root root2= {0}\n", x2);
+            }
+            else
+            {
+                Console.Write("Complex Roots;\n");
+                x1 = (-b / (2 * a));
+                x2 = (-b / (2 * a));
+                Console.Write("First  Root Root1= {0} +i{1}\n", x1, sqrt_val);
+                Console.Write("Second Root root2= {0} -i{1}\n", x2, sqrt_val);
+            }
+        }
+    }
+}
